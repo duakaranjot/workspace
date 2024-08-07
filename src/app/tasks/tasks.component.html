@@ -1,7 +1,7 @@
 <app-add-task
   *ngIf="showAddtask"
-  (cancelTask)="onCancleAddTask()"
-  (addTask)="onAddTask($event)"
+  (close)="onCloseAddTask()"
+  [userId]="userId"
 >
 </app-add-task>
 
@@ -13,8 +13,8 @@
     </menu>
   </header>
   <ul>
-    <li *ngFor="let item of selectUsertasks">
-      <app-task [task]="item" (complete)="oncompletetask($event)"></app-task>
+    <li *ngFor="let item of selectedUsertasks">
+      <app-task [task]="item"></app-task>
     </li>
   </ul>
 </section>

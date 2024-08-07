@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { newTask } from '../task.model';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-add-task',
@@ -9,22 +10,24 @@ import { newTask } from '../task.model';
   styleUrl: './add-task.component.css',
 })
 export class AddTaskComponent {
-  @Input() showAddTask!: boolean;
-  @Output() cancelTask = new EventEmitter();
-  @Output() addTask = new EventEmitter<newTask>();
+  @Input() userId!:string;
+  // @Input() showAddTask!: boolean;
+  @Output() close = new EventEmitter();
+  // @Output() addTask = new EventEmitter<newTask>();
   enteredTitle: string = '';
   enteredSummary: string = '';
   enteredDate: string = '';
+//this alternate way to constructor based approach to initiate the service in a component
+  private taskService = inject(TasksService)
 
   onCancelTask() {
-    this.cancelTask.emit();
+    this.close.emit();
   }
 
   OnSubmit() {
-    this.addTask.emit({
-      tile: this.enteredTitle,
-      summary: this.enteredSummary,
-      date: this.enteredDate,
-    });
+    this.taskService.addTask({ tile: this.enteredTitle,
+        summary: this.enteredSummary,
+        date: this.enteredDate,},this.userId)
+        this.close.emit()
   }
 }

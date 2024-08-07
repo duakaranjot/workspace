@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, inject, Input, Output } from '@angular/core';
 //import { tasks } from './task.model';
+import { DatePipe } from '@angular/common';
+import { TasksService } from '../tasks.service';
+import { toArray } from 'rxjs';
 
 interface task {
   id: string;
@@ -17,10 +20,10 @@ interface task {
   styleUrl: './task.component.css',
 })
 export class TaskComponent {
+  private taskService = inject(TasksService)
   @Input() task!: task;
-  @Output() complete = new EventEmitter<string>();
 
   onCompleteTask() {
-    this.complete.emit(this.task.id);
+    this.taskService.removetask(this.task.id);
   }
 }
