@@ -5,7 +5,13 @@ import { newTask } from './task.model';
   providedIn: 'root',
 })
 export class TasksService {
-  constructor() {}
+  constructor() {
+    //in local storage will be always stored in a string and below is the methpod to get by key
+    const tasks = localStorage.getItem('tasks');
+    if (tasks) {
+      this.tasks = JSON.parse(tasks);
+    }
+  }
 
   private tasks = [
     {
@@ -33,7 +39,7 @@ export class TasksService {
       dueDate: '2025-12-31',
     },
   ];
-  
+
   getUserTasks(userId: string) {
     return this.tasks.filter((x) => x.userId == userId);
   }
@@ -46,9 +52,16 @@ export class TasksService {
       summary: taskData.summary,
       dueDate: taskData.date,
     });
+    this.saveTasks()
   }
 
   removetask(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+    this.saveTasks()
+  }
+
+  private saveTasks() {
+    // method to get item from lovcal storage
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 }

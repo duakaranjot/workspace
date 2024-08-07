@@ -5,24 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponenet } from './header/header.componenet';
 import { UserComponent } from './user/user.component';
-import { TasksComponent } from './tasks/tasks.component';
-import { TaskComponent } from './tasks/task/task.component';
-import { AddTaskComponent } from './tasks/add-task/add-task.component';
-import { CardComponent } from './shared/card/card.component';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-    ,HeaderComponenet, UserComponent,TasksComponent,TaskComponent,AddTaskComponent,CardComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  declarations: [AppComponent, HeaderComponenet, UserComponent],
+  imports: [BrowserModule, AppRoutingModule,SharedModule,TasksModule],
   providers: [],
-  bootstrap: [AppComponent,HeaderComponenet,UserComponent,TasksComponent,TaskComponent,AddTaskComponent]
+  bootstrap: [AppComponent, HeaderComponenet, UserComponent],
 })
-export class AppModule { }
+export class AppModule {}

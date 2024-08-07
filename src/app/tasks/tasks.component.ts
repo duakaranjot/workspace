@@ -15,8 +15,7 @@ export class TasksComponent {
   showAddtask: boolean = false;
   isAddingTask: boolean = false;
 
-  constructor(private taskService: TasksService) {
-  }
+  constructor(private taskService: TasksService) {}
 
   get selectedUsertasks() {
     return this.taskService.getUserTasks(this.userId);
@@ -29,5 +28,4 @@ export class TasksComponent {
   onCloseAddTask() {
     this.showAddtask = false;
   }
-
 }

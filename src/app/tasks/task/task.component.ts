@@ -1,8 +1,6 @@
 import { Component, inject, Input, Output } from '@angular/core';
 //import { tasks } from './task.model';
-import { DatePipe } from '@angular/common';
 import { TasksService } from '../tasks.service';
-import { toArray } from 'rxjs';
 
 interface task {
   id: string;

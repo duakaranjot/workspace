@@ -10,12 +10,12 @@ import { NgFor } from '@angular/common';
 export class AppComponent {
   title = 'first-angular-app';
   users = DUMMY_USERS;
-  selectedUserid?:string;
+  selectedUserid?: string;
 
   get selectedUser() {
     return this.users.find((x) => x.id === this.selectedUserid);
   }
-  
+
   onSelectUser(id: string) {
     this.selectedUserid = id;
   }

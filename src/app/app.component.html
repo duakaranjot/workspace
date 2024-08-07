@@ -50,7 +50,11 @@
     </li> -->
     <!-- @for (user of users; track user.id){ -->
     <li *ngFor="let user of users">
-      <app-user [user]="user" [selected]= "user.id === selectedUserid" (select)="onSelectUser($event)"></app-user>
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserid"
+        (select)="onSelectUser($event)"
+      ></app-user>
     </li>
     <!-- } -->
   </ul>
